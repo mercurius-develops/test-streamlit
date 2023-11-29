@@ -83,7 +83,7 @@ if uploaded_file is not None:
 
         st.title("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user,df)
-        user_heatmap = user_heatmap.dropna()  # Drop rows with NaN values
+        user_heatmap = user_heatmap.fillna(0)  # Drop rows with NaN values
 
 
         fig,ax = plt.subplots()
