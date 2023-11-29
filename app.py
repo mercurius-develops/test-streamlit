@@ -77,7 +77,12 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
         st.title("Weekly Activity Map")
-        user_heatmap = helper.activity_heatmap(selected_user,df)
+        if not user_heatmap.empty:
+            fig, ax = plt.subplots()
+            ax = sns.heatmap(user_heatmap)
+            st.pyplot(fig)
+        else:
+            st.write("No data available for the selected user.")
         fig,ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
