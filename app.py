@@ -87,7 +87,11 @@ if uploaded_file is not None:
 
 
         fig,ax = plt.subplots()
-        ax = sns.heatmap(user_heatmap)
+        if not user_heatmap.empty:
+            ax=sns.heatmap(user_heatmap)
+        else:
+            st.write("Empty data provided for heatmap.")
+
         st.pyplot(fig)
 
         # finding the busiest users in the group(Group level)
