@@ -82,8 +82,8 @@ if uploaded_file is not None:
         # ...
         
         # Calculate user_heatmap
-        if condition:
-            user_heatmap = helper.activity_heatmap(selected_user, df)  # Generate user_heatmap
+        
+        user_heatmap = helper.activity_heatmap(selected_user, df)  # Generate user_heatmap
         
         # Later in your code, perform the check after ensuring it's defined
         if user_heatmap is not None:
