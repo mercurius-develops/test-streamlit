@@ -77,12 +77,23 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
         st.title("Weekly Activity Map")
-        if not user_heatmap.empty:
+        user_heatmap = None  # Initialize the variable outside the conditional block or function where it's calculated
+
+        # ...
+        
+        # Calculate user_heatmap
+        if condition:
+            user_heatmap = helper.activity_heatmap(selected_user, df)  # Generate user_heatmap
+        
+        # Later in your code, perform the check after ensuring it's defined
+        if user_heatmap is not None:
+            # Use user_heatmap for plotting or analysis
             fig, ax = plt.subplots()
             ax = sns.heatmap(user_heatmap)
             st.pyplot(fig)
         else:
             st.write("No data available for the selected user.")
+
         fig,ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
