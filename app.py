@@ -13,8 +13,7 @@ if uploaded_file is not None:
 
     # fetch unique users
     user_list = df['user'].unique().tolist()
-    if 'group_notification' in user_list:
-        user_list.remove('group_notification')
+    user_list.remove('group_notification')
     user_list.sort()
     user_list.insert(0,"Overall")
 
@@ -77,23 +76,7 @@ if uploaded_file is not None:
             st.pyplot(fig)
 
         st.title("Weekly Activity Map")
-        user_heatmap = None  # Initialize the variable outside the conditional block or function where it's calculated
-
-        # ...
-        
-        # Calculate user_heatmap
-        
-        user_heatmap = helper.activity_heatmap(selected_user, df)  # Generate user_heatmap
-        
-        # Later in your code, perform the check after ensuring it's defined
-        if user_heatmap is not None:
-            # Use user_heatmap for plotting or analysis
-            fig, ax = plt.subplots()
-            ax = sns.heatmap(user_heatmap)
-            st.pyplot(fig)
-        else:
-            st.write("No data available for the selected user.")
-
+        user_heatmap = helper.activity_heatmap(selected_user,df)
         fig,ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
