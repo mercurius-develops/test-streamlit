@@ -2,8 +2,6 @@ import streamlit as st
 import preprocessor,helper
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
-import pandas as pd
 
 st.sidebar.title("Whatsapp Chat Analyzer")
 
@@ -12,15 +10,10 @@ if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
     df = preprocessor.preprocess(data)
-    df['message'] = df['message'].astype(str)
 
     # fetch unique users
     user_list = df['user'].unique().tolist()
-    if 'group_notification' in user_list:
-        user_list.remove('group_notification')
-    else:
-        st.write("'group_notification' not found in user list")
-
+    user_list.remove('group_notification')
     user_list.sort()
     user_list.insert(0,"Overall")
 
@@ -84,15 +77,8 @@ if uploaded_file is not None:
 
         st.title("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user,df)
-        user_heatmap = user_heatmap.fillna(0)  # Drop rows with NaN values
-
-
         fig,ax = plt.subplots()
-        if not user_heatmap.empty:
-            ax=sns.heatmap(user_heatmap)
-        else:
-            st.write("Empty data provided for heatmap.")
-
+        ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
 
         # finding the busiest users in the group(Group level)
