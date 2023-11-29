@@ -13,16 +13,7 @@ if uploaded_file is not None:
 
     # fetch unique users
     user_list = df['user'].unique().tolist()
-    
-    # Check if 'group_notification' exists in user_list before attempting to remove it
-    if 'group_notification' in user_list:
-        user_list.remove('group_notification')
-        
-    user_list.sort()
-    user_list.insert(0, "Overall")
-
-    selected_user = st.sidebar.selectbox("Show analysis wrt", user_list)
-
+    user_list.remove('group_notification')
     user_list.sort()
     user_list.insert(0,"Overall")
 
@@ -86,7 +77,6 @@ if uploaded_file is not None:
 
         st.title("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user,df)
-        st.write(user_heatmap)
         fig,ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
