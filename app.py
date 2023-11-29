@@ -81,6 +81,8 @@ if uploaded_file is not None:
 
         st.title("Weekly Activity Map")
         user_heatmap = helper.activity_heatmap(selected_user,df)
+        user_heatmap = user_heatmap.fillna(0)  # Fill NaN values with zero
+
         fig,ax = plt.subplots()
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
